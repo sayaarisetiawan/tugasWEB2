@@ -1,6 +1,7 @@
 <?php 
-require 'function.php';
-$kendaraan = query("SELECT * FROM data_kendaraan");
+//koneksi ke database
+$koneksi = mysqli_connect("localhost", "root","", "kendaraan");
+
 //ambil data dari database
 $result = mysqli_query($koneksi, "SELECT * FROM data_kendaraan");
 // var_dump($result);
@@ -29,7 +30,7 @@ $result = mysqli_query($koneksi, "SELECT * FROM data_kendaraan");
         </tr>
         
         <?php $i=1;?>
-        <?php foreach ($kendaraan as $row) : ?>
+        <?php while ($row = mysqli_fetch_assoc($result)) : ?>
         <tr>
             <td> <?= $i?> </td>
             <td>
@@ -42,7 +43,7 @@ $result = mysqli_query($koneksi, "SELECT * FROM data_kendaraan");
             <td><?= $row['Distributor'] ?></td>
         </tr>
         <?php $i++;?>
-        <?php endforeach;?>
+        <?php endwhile;?>
     </table>
 </body>
 </html>
