@@ -18,6 +18,8 @@ $result = mysqli_query($koneksi, "SELECT * FROM data_kendaraan");
 </head>
 <body>
     <h1>Daftar Kendaraan</h1>
+    <a href="tambah.php">Tambah Data Kendaraan</a>
+    <br></br>
     <table  border="2" cellpadding="10" cellspacing="0">
         <tr>
             <th>No</th>
