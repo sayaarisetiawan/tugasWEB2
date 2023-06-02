@@ -3,15 +3,23 @@
 $koneksi =mysqli_connect("localhost","root", "", "kendaraan");
 //apakah tombol submit sudah ditekan apa belum
 if(isset($_POST["submit"])) {
-
+//ambil data masing-masing form
     $Nama = $_POST["Nama"];
     $Tahun_Pembuatan= $_POST["Tahun_Pembuatan"];
     $Pembuat= $_POST["Pembuat"];
     $Distributor =$_POST["Distributor"];
 //query insert ke database
-$query= "INSERT INTO data_kendaraan VALUES ('', '$Nama', '$Tahun_Pembuatan', '$Pembuat', '$Distributor')";
+$query= "INSERT INTO data_kendaraan VALUES('', '$Nama', '$Tahun_Pembuatan', '$Pembuat', '$Distributor')";
 mysqli_query($koneksi, $query);
 
+//cek apakah data berhasil ditambahkan atau tidak
+if(mysqli_affected_rows($koneksi) > 0){
+    echo "Data Berhasil Disimpan";
+}else {
+    echo " Data Gagal Disimpan";
+    echo "<br>";
+    echo mysqli_error($koneksi);
+}
 }
 ?>
 <!DOCTYPE html>
@@ -42,9 +50,9 @@ mysqli_query($koneksi, $query);
             <label for="Distributor"> Distributor : </label>
             <input type="text" name="Distributor" id="Distributor">
         </li>
-        <li>
-            <button type="submit" name="submit">Kirim</button>
-        </li>
+        
+        <button type="submit" name="submit">Kirim</button>
+        
         
     </ul>
     </form>
